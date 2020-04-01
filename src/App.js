@@ -9,7 +9,7 @@ function App() {
     {
       dayName: "Monday",
       meals: 5,
-      startTime: "15:15:00",
+      startTime: new Date("1970-01-01T15:15:00"),
       endTime: "16:12:00"
     },
     {

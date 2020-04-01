@@ -1,18 +1,10 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import { KeyboardTimePicker } from "@material-ui/pickers";
+import { format } from "date-fns";
 
 const ScheduleItem = ({ dayName, meals, startTime, endTime, onChange }) => {
   const removeKeyboardStyles = { disabled: true, style: { display: "none" } };
-
-  const handleChange = (name, value) => {
-    // if (isDisabled) return;
-
-    onChange({
-      [name]: value
-    });
-  };
-
   return (
     <div className="grid">
       <h5>{dayName}</h5>
@@ -21,23 +13,21 @@ const ScheduleItem = ({ dayName, meals, startTime, endTime, onChange }) => {
         defaultValue={meals}
         id="standard-number"
         type="number"
-        onChange={handleChange}
+        onChange={e => onChange(dayName, "meals", e.target.value)}
       />
-
       <KeyboardTimePicker
-        // clearable
+        clearable
         ampm={false}
         value={startTime}
-        // onChange={value => handleChange("startTime", value)}
+        onChange={value => onChange(dayName, "startTime", value)}
         KeyboardButtonProps={removeKeyboardStyles}
       />
 
       <KeyboardTimePicker
-        // clearable
+        clearable
         ampm={false}
         value={endTime}
-        // value={`${datePlaceholder}${endTime}`}
-        // onChange={value => handleChange("endTime", value)}
+        onChange={value => onChange(dayName, "endTime", value)}
         KeyboardButtonProps={removeKeyboardStyles}
       />
     </div>
